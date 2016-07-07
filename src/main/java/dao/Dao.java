@@ -38,10 +38,15 @@ public class Dao {
 		Query query = entityManager.createQuery("SELECT e FROM Equipment e");
 		return (List<Equipment>) query.getResultList();
 	}
+	
+	public Equipment findOne(Long id) {
+		
+		return entityManager.find(Equipment.class, id);
+	}
 
-	public String delete(Equipment equipment) {
+	public String delete(Long id) {
 		try {
-			equipment = entityManager.find(Equipment.class, equipment.getId());
+			Equipment equipment = entityManager.find(Equipment.class, id);
 			entityManager.getTransaction().begin();
 			entityManager.remove(equipment);
 			entityManager.getTransaction().commit();

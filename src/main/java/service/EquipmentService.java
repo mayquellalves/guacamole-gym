@@ -13,13 +13,17 @@ public class EquipmentService {
 		List<Equipment> equipments = dao.findAllEquipment();
 		return equipments;
 	}
+	
+	public Equipment getEquipment(Long id) {
+		return dao.findOne(id);
+	}
 
 	public Equipment addEquipment(Equipment equipment) {
 		dao.save(equipment);
 		return equipment;
 	}
 	
-	public String deleteEquipment(Equipment equipment){
-		return dao.delete(equipment);
+	public String deleteEquipment(Long id){
+		return dao.delete(id);
 	}
 }
