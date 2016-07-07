@@ -1,0 +1,24 @@
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'eclipse'
+apply plugin: 'eclipse-wtp'
+
+repositories {
+
+    jcenter()
+}
+
+dependencies {
+   compile 'org.slf4j:slf4j-api:1.7.21'
+   compile "javax.ws.rs:jsr311-api:+"
+
+    compile 'com.sun.jersey:jersey-server:+'
+    compile 'com.sun.jersey:jersey-core:+'
+    compile 'com.sun.jersey:jersey-servlet:+'
+    compile 'com.sun.jersey:jersey-json:+'
+    
+   compile 'org.hibernate:hibernate-core:5.2.1.Final'
+   compile 'org.hibernate:hibernate-entitymanager:5.2.1.Final'
+   compile 'mysql:mysql-connector-java:5.1.39'
+   testCompile 'junit:junit:4.12'
+}
