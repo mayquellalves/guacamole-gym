@@ -1,30 +1,57 @@
 package dao;
 
+import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.Persistence;
-import javax.persistence.Query;
-import javax.ws.rs.core.Response;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
 
-import model.Equipment;
+import model.AbstractModel;
 
-public class Dao {
+public class Dao<Model extends AbstractModel> {
 
-	private EntityManager entityManager = Persistence.createEntityManagerFactory("gym").createEntityManager();
+	private final EntityManager entityManager;
+	private final JpaUtil jpaUtil;
+	private final Class<Model> modelClass;
 
-	public EntityManager getEntityManager() {
-		return entityManager;
+	@SuppressWarnings("unchecked")
+	public Dao() {
+		this.jpaUtil = JpaUtil.getInstance();
+		this.entityManager = jpaUtil.getEntityManager();
+		for (int i = 0; i < 5; i++) {
+			System.out.println(JpaUtil.getInstance());
+		}
+		modelClass = (Class<Model>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
+		
 	}
 
-	public void save(Equipment equipment) {
+	@SuppressWarnings("unchecked")
+	public List<Model> findAll() {
+		
+		 CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+		 CriteriaQuery<Model> criteriaQuery = criteriaBuilder.createQuery(modelClass);
+		 criteriaQuery.from(modelClass);
+		 entityManager.createQuery(criteriaQuery);
+		 
+		return entityManager.createQuery(criteriaQuery).getResultList();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public Model findOne(Long id) {
+
+		return (Model) entityManager.find(modelClass, id);
+	}
+
+	/*public void save(Model model) {
 
 		try {
 			entityManager.getTransaction().begin();
-			if (equipment.getId() == null) {
-				entityManager.persist(equipment);
+			if (model.getId() == null) {
+				entityManager.persist(model);
 			} else {
-				entityManager.merge(equipment);
+				entityManager.merge(model);
 			}
 
 			entityManager.getTransaction().commit();
@@ -34,27 +61,15 @@ public class Dao {
 		}
 	}
 
-	public List<Equipment> findAllEquipment() {
-		Query query = entityManager.createQuery("SELECT e FROM Equipment e");
-		return (List<Equipment>) query.getResultList();
-	}
-	
-	public Equipment findOne(Long id) {
-		
-		return entityManager.find(Equipment.class, id);
-	}
-
-	public String delete(Long id) {
 		try {
-			Equipment equipment = entityManager.find(Equipment.class, id);
 			entityManager.getTransaction().begin();
-			entityManager.remove(equipment);
+			entityManager.remove(id);
 			entityManager.getTransaction().commit();
 			entityManager.close();
-			
+
 		} catch (Exception e) {
 			System.out.println(" Ocorreu um erro ao tentar Remover: " + e.getMessage());
 		}
 		return Response.status(200).toString();
-	}
+	}*/
 }

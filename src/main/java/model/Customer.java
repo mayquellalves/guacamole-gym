@@ -26,8 +26,6 @@ public class Customer {
 	@Temporal(value=TemporalType.DATE)
 	private Date dataNascimento;
 
-	@OneToOne(mappedBy="ID_ADDRESS")
-	private Address address;
 
 	public Long getId() {
 		return id;
@@ -69,13 +67,4 @@ public class Customer {
 		this.dataNascimento = dataNascimento;
 	}
 
-	public Address getAddress() {
-		return address;
-	}
-
-	public void setAddress(Address address) {
-		this.address = address;
-	}
-	
-	
 }

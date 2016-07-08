@@ -4,27 +4,31 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement
 @Entity
-public class Equipment {
+public class Equipment extends AbstractModel {
 
+	private String description;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
 	private String name;
-	private String description;
-
-	public Equipment() {
-		super();
+	
+	
+	public Equipment(){
+		
+	}
+	public Equipment(Long id, String name, String description) {
+		this.description = description;
+		this.name = name;
+		this.id = id;
 	}
 
-	public Equipment(Long id, String name, String description) {
-		super();
-		this.id = id;
-		this.name = name;
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
 		this.description = description;
 	}
 
@@ -43,13 +47,6 @@ public class Equipment {
 	public void setName(String name) {
 		this.name = name;
 	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
+	
 
 }
