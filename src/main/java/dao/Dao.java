@@ -4,7 +4,6 @@ import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 
@@ -20,9 +19,6 @@ public class Dao<Model extends AbstractModel> {
 	public Dao() {
 		this.jpaUtil = JpaUtil.getInstance();
 		this.entityManager = jpaUtil.getEntityManager();
-		for (int i = 0; i < 5; i++) {
-			System.out.println(JpaUtil.getInstance());
-		}
 		modelClass = (Class<Model>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
 		
 	}
@@ -44,32 +40,42 @@ public class Dao<Model extends AbstractModel> {
 		return (Model) entityManager.find(modelClass, id);
 	}
 
-	/*public void save(Model model) {
-
+	public void save(Model model) {
 		try {
 			entityManager.getTransaction().begin();
-			if (model.getId() == null) {
-				entityManager.persist(model);
-			} else {
-				entityManager.merge(model);
-			}
-
+			entityManager.persist(model);
 			entityManager.getTransaction().commit();
 			entityManager.close();
+			
 		} catch (Exception e) {
 			System.out.println(" Ocorreu um erro ao tentar salvar " + e.getMessage());
 		}
 	}
-
+	
+	public void update(Model model) {
 		try {
 			entityManager.getTransaction().begin();
-			entityManager.remove(id);
+			entityManager.merge(model);
 			entityManager.getTransaction().commit();
 			entityManager.close();
-
+			
 		} catch (Exception e) {
-			System.out.println(" Ocorreu um erro ao tentar Remover: " + e.getMessage());
+			System.out.println(" Ocorreu um erro ao tentar salvar " + e.getMessage());
 		}
-		return Response.status(200).toString();
-	}*/
+	}
+	
+	public void remove(Long id) {
+		try {
+			Model model = findOne(id);
+			
+			entityManager.getTransaction().begin();
+			entityManager.remove(model);
+			entityManager.getTransaction().commit();
+			entityManager.close();
+			
+		} catch (Exception e) {
+			System.out.println(" Ocorreu um erro ao tentar remover " + e.getMessage());
+		}
+	}
+
 }
