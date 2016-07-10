@@ -2,6 +2,10 @@ package service;
 
 import java.util.List;
 
+import javax.ws.rs.HttpMethod;
+import javax.ws.rs.core.Response;
+import javax.xml.ws.spi.http.HttpContext;
+
 import dao.Dao;
 import model.Equipment;
 
@@ -16,10 +20,8 @@ public class EquipmentService extends Dao<Equipment> {
 		return findOne(id);
 	}
 
-	public Equipment addEquipment(Equipment equipment) {
-		
+	public void addEquipment(Equipment equipment) {
 		save(equipment);
-		return equipment;
 	}
 
 	public Equipment updateEquipment(Equipment equipment) {

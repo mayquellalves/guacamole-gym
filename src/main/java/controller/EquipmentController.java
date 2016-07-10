@@ -10,6 +10,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 import model.Equipment;
 import service.EquipmentService;
@@ -33,20 +34,22 @@ public class EquipmentController {
 	public Equipment getEquipment(@PathParam("id") Long id) {
 		return eService.getEquipment(id);
 	}
-	
-	
+
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
-	public Equipment addEquipment(Equipment equipment) {
-		return eService.addEquipment(equipment);
+	public Response addEquipment(Equipment equipment) {
+
+		eService.addEquipment(equipment);
+
+		return Response.status(201).entity(equipment).build();
 	}
 
 	@PUT
 	@Produces(MediaType.APPLICATION_JSON)
-	public String updateEquipment(Equipment equipment) {
+	public Response updateEquipment(Equipment equipment) {
 		eService.update(equipment);
 
-		return "Equipment update with Sucess";
+		return Response.status(200).entity(equipment).build();
 	}
 
 	@DELETE

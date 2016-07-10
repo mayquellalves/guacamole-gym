@@ -6,7 +6,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -25,6 +27,10 @@ public class Customer {
 	
 	@Temporal(value=TemporalType.DATE)
 	private Date dataNascimento;
+	
+	@OneToOne(optional=false)
+	@JoinColumn(name="ADDRESS_ID", unique=true, nullable=false, updatable=true)
+	private Address address;
 
 
 	public Long getId() {
