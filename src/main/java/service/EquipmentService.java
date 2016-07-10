@@ -2,10 +2,6 @@ package service;
 
 import java.util.List;
 
-import javax.ws.rs.HttpMethod;
-import javax.ws.rs.core.Response;
-import javax.xml.ws.spi.http.HttpContext;
-
 import dao.Dao;
 import model.Equipment;
 

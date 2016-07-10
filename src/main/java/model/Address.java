@@ -8,7 +8,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 @Entity
-public class Address {
+public class Address extends AbstractModel{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
