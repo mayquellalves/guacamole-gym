@@ -4,11 +4,10 @@ import java.util.List;
 
 import dao.Dao;
 import model.Customer;
-import model.Equipment;
 
 public class CustomerService extends Dao<Customer>{
 	
-	public List<Customer> getAllEquipments() {
+	public List<Customer> getAllCustomer() {
 		List<Customer> customers = findAll();
 		return customers;
 	}
@@ -17,11 +16,11 @@ public class CustomerService extends Dao<Customer>{
 		return findOne(id);
 	}
 
-	public void addEquipment(Customer customer) {
+	public void addCustomer(Customer customer) {
 		save(customer);
 	}
 
-	public Customer updateEquipment(Customer customer) {
+	public Customer updateCustomer(Customer customer) {
 		
 		update(customer);
 		
