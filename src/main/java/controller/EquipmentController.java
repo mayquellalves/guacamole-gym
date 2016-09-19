@@ -1,4 +1,4 @@
-package controller;
+package test.controller;
 
 import java.util.List;
 
@@ -12,8 +12,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import model.Equipment;
-import service.EquipmentService;
+import test.model.Equipment;
+import test.service.EquipmentService;
 
 @Path("/equipment")
 public class EquipmentController {

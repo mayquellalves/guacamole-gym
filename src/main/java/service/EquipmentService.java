@@ -1,9 +1,9 @@
-package service;
+package test.service;
 
 import java.util.List;
 
-import dao.Dao;
-import model.Equipment;
+import test.dao.Dao;
+import test.model.Equipment;
 
 public class EquipmentService extends Dao<Equipment> {
 

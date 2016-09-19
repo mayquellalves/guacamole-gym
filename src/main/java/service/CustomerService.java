@@ -1,9 +1,9 @@
-package service;
+package test.service;
 
 import java.util.List;
 
-import dao.Dao;
-import model.Customer;
+import test.dao.Dao;
+import test.model.Customer;
 
 public class CustomerService extends Dao<Customer>{
 	

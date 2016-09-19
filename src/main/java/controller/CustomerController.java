@@ -1,4 +1,4 @@
-package controller;
+package test.controller;
 
 import java.util.List;
 
@@ -10,10 +10,10 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import model.Customer;
-import service.CustomerService;
+import test.model.Customer;
+import test.service.CustomerService;
 
-@Path("customer")
+@Path("/customer")
 public class CustomerController {
 
 	CustomerService service = new CustomerService();

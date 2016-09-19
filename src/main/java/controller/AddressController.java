@@ -1,4 +1,4 @@
-package controller;
+package test.controller;
 
 import java.util.List;
 
@@ -12,8 +12,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import model.Address;
-import service.AddressService;
+import test.model.Address;
+import test.service.AddressService;
 
 @Path("/address")
 public class AddressController {
