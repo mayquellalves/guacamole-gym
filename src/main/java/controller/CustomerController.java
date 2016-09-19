@@ -1,4 +1,4 @@
-package test.controller;
+package controller;
 
 import java.util.List;
 
@@ -10,8 +10,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import test.model.Customer;
-import test.service.CustomerService;
+import model.Customer;
+import service.CustomerService;
 
 @Path("/customer")
 public class CustomerController {

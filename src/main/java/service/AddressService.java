@@ -1,9 +1,9 @@
-package test.service;
+package service;
 
 import java.util.List;
 
-import test.dao.Dao;
-import test.model.Address;
+import dao.Dao;
+import model.Address;
 
 public class AddressService extends Dao<Address> {
 

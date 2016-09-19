@@ -1,4 +1,4 @@
-package test.dao;
+package dao;
 
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
@@ -7,7 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 
-import test.model.AbstractModel;
+import model.AbstractModel;
 
 public class Dao<Model extends AbstractModel> {
 
